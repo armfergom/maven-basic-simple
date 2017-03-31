@@ -1,3 +1,5 @@
+import org.apache.commons.lang.SystemUtils
+
 node {
     git url: 'https://github.com/varyvoltest/maven-basic-simple'
     def mvnHome = tool 'M3'
