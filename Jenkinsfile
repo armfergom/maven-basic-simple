@@ -4,7 +4,11 @@ node {
     cbEnv = ["PATH+MVN=${mvnHome}/bin", "MAVEN_HOME=${mvnHome}"]
     withEnv(cbEnv) {
         try {
-            sh 'mvn test -DmavenBasicNotFail'
+            if (SystemUtils.IS_OS_WINDOWS) {
+                bat 'mvn test -DmavenBasicNotFail'    
+            } else {
+                sh 'mvn test -DmavenBasicNotFail'
+            }
         } catch (any) {
             currentBuild.result = 'FAILURE'
             throw any
